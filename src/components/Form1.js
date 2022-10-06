@@ -9,7 +9,7 @@ const Form1 = () => {
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
-  };
+  };z
 
   return (
     <Form
