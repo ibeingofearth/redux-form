@@ -7,13 +7,13 @@ import Logout from './components/logout';
 
 
 function App() {
-  const user = useSelector(selectUser);
-  
-  return (
-    <div>
-      {user ? <Logout/> : <Login/>}
-    </div>
-  );
+const user = useSelector(selectUser);
+
+return (
+<div>
+  {user ? <Logout/> : <Login/>}
+</div>
+);
 }
 
 export default App;
