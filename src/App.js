@@ -11,7 +11,8 @@ const user = useSelector(selectUser);
 
 return (
 <div>
-  {user ? <Logout/> : <Login/>}
+  {/* {user ? <Logout/> : <Login/>} */}
+//route in react?
 </div>
 );
 }
