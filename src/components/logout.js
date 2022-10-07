@@ -8,11 +8,11 @@ function Logout() {
     const handleLogout = (e) => {
     e.preventDefault()
 
-    dispatch(logout({
-        user: null,
-        loggedOut: true,
-    }));
-    }
+      dispatch(logout({
+          user: null,
+          loggedOut: true,
+      }));
+      }
   return (
     <div className='login-sec'>
       <h1>welcome To the  WebSite</h1>

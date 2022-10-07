@@ -34,7 +34,6 @@ function Login() {
         const errorCode = error.code;
         alert(errorCode)
     });
-    localStorage.setItem('auth', true)  
    }
    const signUp = () => { 
     createUserWithEmailAndPassword(auth, email, password)
