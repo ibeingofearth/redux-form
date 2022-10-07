@@ -1,18 +1,27 @@
 import React from 'react'
-import { logout } from './userSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate  } from 'react-router-dom';
 import { Button } from 'antd';
 
 function Logout() {
-    const dispatch = useDispatch();
-    const handleLogout = (e) => {
-    e.preventDefault()
+  const navigate = useNavigate ()
+  const[logout] = React.useState()
+  
+  React.useEffect(()=>{if(!localStorage.getItem('auth')) navigate('/')},[logout]);
 
-      dispatch(logout({
-          user: null,
-          loggedOut: true,
-      }));
-      }
+    const dispatch = useDispatch();
+
+    const handleLogout = (e) => {
+    console.log('Failed:');
+    e.preventDefault()
+    localStorage.removeItem('auth')
+    navigate('/')
+
+    dispatch(logout({
+        user: null,
+        logout: true,
+    }));
+    }
   return (
     <div className='login-sec'>
       <h1>welcome To the  WebSite</h1>
