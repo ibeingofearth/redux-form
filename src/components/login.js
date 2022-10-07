@@ -18,6 +18,7 @@ function Login() {
 
 
    const signIn = () => {
+    
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user;
@@ -35,7 +36,7 @@ function Login() {
     });
     localStorage.setItem('auth', true)  
    }
-   const signUp = () => {
+   const signUp = () => { 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -54,6 +55,7 @@ return(
  
   <Card
         className="login-sec">
+          <div className="card1">
    <Form
         name="basic"
         labelCol={{
@@ -72,6 +74,10 @@ return(
         <Form.Item
           label="Email"
           name="Email"
+          wrapperCol={{
+            offset: 0,
+            span: 16,
+          }}
           type={"email"}
           rules={[
             {
@@ -86,6 +92,10 @@ return(
         <Form.Item
           label="Password"
           name="password"
+          wrapperCol={{
+            offset: 0,
+            span: 16,
+          }}
           rules={[
             {
               required: true,
@@ -129,6 +139,7 @@ return(
           </Button>       
         </Form.Item>
       </Form>
+      </div>
     </Card   >
  
     </div>
