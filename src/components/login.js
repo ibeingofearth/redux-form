@@ -42,7 +42,7 @@ function Login() {
         console.log(user);
         alert("successfully created an account")
       })
-      localStorage.setItem('auth', true)
+      localStorage.setItem('auth', true)    
       .catch((error) => {
         const errorCode = error.code;
         alert(errorCode)
