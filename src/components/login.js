@@ -1,157 +1,138 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { login } from "./userSlice";
-import {useRef} from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { Button, Checkbox, Form, Input } from 'antd';
-import app from '../firebase/config'
-import { Card } from 'antd';
+import { Button, Card, Checkbox, Form, Input, Row,Col } from 'antd';
+import app from '../firebase/config';
 
 
-function Login() {
+
+
+function Login() { 
+ 
+
   const auth = getAuth(app);
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    
-  };
+  const[email, setEmail] = useState("")
+  const[password, setPassword] = useState("")
+  const dispatch = useDispatch();
 
-  const signIn = () => {
+
+   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
         console.log(user);
-        alert("This User Has Successfully Signed In")
-        // ...
+        alert("User Has Successfully Signed In")
+        dispatch(login({
+          user: email,
+          loggedIn: true,
+      })
+      );        
     })
     .catch((error) => {
         const errorCode = error.code;
-        // const errorMessage = error.message;
         alert(errorCode)
     });
+    localStorage.setItem('auth', true)  
    }
    const signUp = () => {
-    
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
         console.log(user);
         alert("successfully created an account")
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
-        // const errorMessage = error.message;
-        // ..
         alert(errorCode)
       });
-   } 
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
- const [ email, setEmail ] = useState("");
- const [ password, setPassword ] = useState("");
- const emailRef = useRef();
- const passwordRef = useRef();
-
- const dispatch = useDispatch();
+   }    
+   
+return(
+  <>
+  <div className="form1">
  
-
- const handlesubmit =(e) => {
-  console.log(emailRef.current.value, passwordRef.current.value);
-    e.preventDefault()
-
-    dispatch(login({
-        email: email,
-        password: password,
-        loggedIn: true,
-    })
-    );
- }
-    return(
-    <div className="login-sec">
-         <Form
-      name="basic"
-      labelCol={{
-        span: 5,
-      }}
-      wrapperCol={{
-        span: 12,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-      autoSave="off"
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Email!',
-          },
-        ]}
+  <Card
+        className="login-sec">
+   <Form
+        name="basic"
+        labelCol={{
+          span: 9,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        autoComplete="off"
       >
-        <Input type="email"  onChange={(e) => setEmail(e.target.value)} />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
           
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password onChange={(e) => setPassword(e.target.value)} />
-      </Form.Item>
+<h3>REACT-REDUX-FIREAUTH</h3>
+        <Form.Item
+          label="Email"
+          name="Email"
+          type={"email"}
+          rules={[
+            {
+              required: true,
+              message: 'Please enter your email!',
+            },
+          ]}
+        >
+          <Input onChange={(e) => setEmail(e.target.value)}/>
+        </Form.Item>
 
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
-        <Button  type="primary" onClick={signUp}>
-          Sign Up
-        </Button><br/>
-        
-      </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please enter your password!',
+            },
+          ]}
+        >
+          <Input.Password onChange={(e) => setPassword(e.target.value)} />
+        </Form.Item>
 
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
-       
-        <Button type="primary" htmlType="submit" onClick={signIn}>
-          LogIn
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+        <Button type="primary" htmlType="submit" onClick={signUp}>
+            SignUp
+          </Button>  
+      
+          </Form.Item>
+
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+              <Button type="primary" htmlType="submit" onClick={signIn}>
+            LogIn
+          </Button>       
+        </Form.Item>
+      </Form>
+    </Card   >
+ 
     </div>
+    </>
     );
-    
 }
 export default Login;

@@ -1,11 +1,10 @@
 import React from 'react'
 import { logout } from './userSlice';
 import { useDispatch } from 'react-redux';
-import {useRef} from 'react'
+import { Button } from 'antd';
 
 function Logout() {
     const dispatch = useDispatch();
- const emailRef = useRef();
     const handleLogout = (e) => {
     e.preventDefault()
 
@@ -16,9 +15,9 @@ function Logout() {
     }
   return (
     <div className='login-sec'>
-      <h1>welcome :<span className='user' ref={emailRef}> </span></h1>
-      <button className='logout-btn'
-      onClick={(e) => handleLogout(e)}>Logout</button>
+      <h1>welcome To the  WebSite</h1>
+      <Button type="primary" danger className='logout-btn'
+      onClick={(e) => handleLogout(e)}>Logout</Button>
     </div>
   )
 }

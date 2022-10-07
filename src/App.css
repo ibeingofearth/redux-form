@@ -23,3 +23,9 @@
   flex: auto;
   max-width: 40% !important;
 }
+.form1{
+  margin: auto;
+  margin-top: 50px;
+  width: 80%;
+  padding: 10px;
+}
