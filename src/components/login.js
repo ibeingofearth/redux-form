@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { login } from "./userSlice";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { Button, Card, Checkbox, Form, Input, Row,Col } from 'antd';
+import { Button, Card, Checkbox, Form, Input } from 'antd';
 import app from '../firebase/config';
 
 
