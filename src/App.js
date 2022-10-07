@@ -1,5 +1,5 @@
 import './App.css';
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less
+import 'antd/dist/antd.min.css';
 import Login from './components/login';
 import { useSelector } from 'react-redux';
 import { selectUser } from './components/userSlice'
