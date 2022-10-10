@@ -6,7 +6,6 @@ import store from "./store/store";
 import Login from './components/login';
 import Logout from './components/logout';
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
-
 const router = createBrowserRouter([
 {
 path: "/",

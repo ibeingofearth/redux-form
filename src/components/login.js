@@ -32,7 +32,7 @@ function Login() {
         console.log(user);
         localStorage.setItem('auth', true)
         navigate('/Logout') 
-        // alert("User Has Successfully Signed In")
+        alert("User Has Successfully Signed In")
         dispatch(login({
           user: email,
           loggedIn: true,
